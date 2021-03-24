@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Planar Object Tracking Benchmark</title>
+
+<link rel="stylesheet" type="text/css" href="planar_benchmark.css" />
+</head>
+
+<body>
+
+
+<div id="mycenter">
+<p style="margin-top: 40px">
+<b><font style="font-size: 24pt">Planar Object Tracking Benchmark in the Wild</font></b>
+</p>
+<!-------
+<p style="margin-top: 0px">
+<font style="font-size: 16pt"><A HREF="http://astro.temple.edu/~tud17343/">Pengpeng Liang</A><span style="position: relative; font-size: 12pt; line-height: 0; vertical-align: baseline; top: -0.3em;">1</span>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Erik Blasch<span style="position: relative; font-size: 12pt; line-height: 0; vertical-align: baseline; top: -0.3em;">2</span>&nbsp;&nbsp;&nbsp;&nbsp;
+<A HREF="http://www.dabi.temple.edu/~hbling/">Haibin Ling</A><span style="position: relative; font-size: 12pt; line-height: 0; vertical-align: baseline; top: -0.3em;">1</span></font>
+</p>
+<p style="margin-top: 0px">
+<font style="font-size: 14pt"><span style="position: relative; font-size: 12pt; line-height: 0; vertical-align: baseline; top: -0.3em;">1</span>Department of Computer and Information Sciences, Temple University</font><br>
+<font style="font-size: 14pt"><span style="position: relative; font-size: 12pt; line-height: 0; vertical-align: baseline; top: -0.3em;">2</span>Air Force Research Lab/Information Directorate</font>
+</p>
+---------->
+<hr>
+<p style="margin-top: 0px">
+<div id="myjustify">
+<H2>Abstract</H2>
+Planar object tracking is an important problem in vision-based robotic systems. Several benchmarks have been constructed to evaluate the tracking algorithms. However, these benchmarks are built in constrained laboratory environments and there is a lack of video sequences captured in the wild to investigate the effectiveness of trackers in practical applications. In this paper, we present a carefully designed planar object tracking benchmark containing 280 videos of 40 planar objects sampled in the natural environment. In particular, for each object, we shoot seven videos involving various challenging factors, namely scale change, rotation, perspective distortion, motion blur, occlusion, out-of-view, and unconstrained. In addition, we design a semi-manual approach to annotate the ground truth with high quality. Moreover, 19 representative algorithms are evaluated on the benchmark using two evaluation metrics. Detailed analysis of the evaluation results is also presented to provide guidance on designing algorithms working in real-world scenarios. We expect that the proposed benchmark would beneﬁt future studies on planar object tracking.
+</div>
+</p>
+<!--The <a href="#dataset">dataset</a> and source code of <a href="#code">some color trackers</a> are made available for reference.-->
+<hr>
+<div id="myjustify">
+<H2>Reference</H2>
+<UL>
+<LI>
+<b>Planar Object Tracking Benchmark in the Wild</b>
+<br>P. Liang, H. Ji, Y. Wu, Y. Chai, L. Wang, C. Liao, H. Ling.
+<br>Under reivew 
+<!--<br><A HREF="http://www.dabi.temple.edu/~hbling/publication/POT-210.pdf">PDF</A>-->
+</UL>
+
+</div>
+<hr>
+
+<div id="myjustify">
+<A name="dataset">
+<H2>Dataset</H2>
+</A>
+<!--<I><u>How to download the benchmark?</u></I><br><br>-->
+All the 280 sequences of the dataset can be downloaded separately for each object using the following Google Drive links. The entire data set is available at <A HREF="https://pan.baidu.com/s/1boKIoXGFOWZ-uu9X6WzDCA">Baidu Pan</A> with extraction code "xaou". The groud truth is available at <A HREF="./annotation.zip">download</A>. <br><br>
+
+<table cellpadding="0" cellspacing="0" id="table6" width="100%" height="28%" align="center">
+
+<!--1-5-->
+<tr>
+ <td align="center"><img src="./imgs/V01_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1voN10_ts_lwdyglTAtTSI7bNlgzbCao7">Lottery-1</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V02_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1-DkF9qM2LSrXn0lHS4ENsyop-SUn-_VV">Lottery-2</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V03_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1oISxD2yaXFDXBoJonW95vvRcyNS9xsNp">Citibank</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V04_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1VNO3Kk1XsX7Qu4zC3YVjFJbg2XJZVE8i">SmokeFree</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V05_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1ctq2S8mWCtARfFhbvPpXWgCBU-w8XRWT">Snack</A>
+ </td>
+</tr>
+
+<!--6-10-->
+<tr>
+ <td align="center"><img src="./imgs/V06_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1f2cue3bkqElYo3M6-frgq2-jG_u7fg5U">Poster-1</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V07_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1bt1RjRbOOChwpF5AlSPWzJ0OeczViJcv">Pizza</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V08_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1psbkynQ5SeG9dxPHp6AwCu25Rn9QWFcP">Snap</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V09_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1G1i0iV7ew1PyuuJq9miap1SQom2cgdbL">Melts</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V10_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1KsuOO7sRshEBLjT79m99RQ8OJo1u7ect">Pretzel</A>
+ </td>
+</tr>
+
+
+<!--11-15-->
+<tr>
+ <td align="center"><img src="./imgs/V11_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1exdfv1SLi092A8H9HmV1lBBV_FYr1Pse">Poster-2</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V12_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1Es4g3aPGdWyXjpN59iMUtmH25CSuFLXY">Painting-1</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V13_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1C4eT57ZcQwVlKIJBykyAML5KzcT-kO-Z">Painting-2</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V14_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1HNW7Qb1BwCckqixEEntxfzC3eRl_NSKQ">NoStopping</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V15_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1_0mvwXbKk-EqUpfFBChWA-SgLLpMCTy7">WalkYourBike</A>
+ </td>
+</tr>
+
+
+<!--16-20-->
+<tr>
+ <td align="center"><img src="./imgs/V16_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1xFDB4Wgma7TqM3oUx7T1mq5cYCCHbnKt">Map-1</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V17_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1zWadnFoLcpaiUnaxW2x8FJDhhSgkWPXG">StopSign</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V18_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1d6mO1Jle2uqTuB7WpzXvN-6UOpT_kxPg">BusStop</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V19_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1wu6O6P2wIlo2cFj-7ofRvGZo_koVVFfO">Map-2</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V20_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1R_Ylw9DJA4nk1vOcIXhJeCSnnnrmye9x">Map-3</A>
+ </td>
+</tr>
+
+
+<!--21-25-->
+<tr>
+ <td align="center"><img src="./imgs/V21_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1xAKuFa6im7e5pUsbm_s8z2STYwCx3JiB">Fruit</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V22_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1jxyr4-ysuEItkYHF-8zW5YUvvt-UYq9O">Amish</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V23_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1WcYqZ4HgXjum-03V-FnCX6jcyyjH_igT">ShuttleStop</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V24_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=18Tebcwv5kvIhfic8WxggT2__AwUFdGWH">IndegoStation</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V25_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1sBHJ98w1I2rMuyhOcytvOIojy7s-9_TP">Woman</A>
+ </td>
+</tr>
+
+
+<!--26-30-->
+<tr>
+ <td align="center"><img src="./imgs/V26_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1KM-8x71-WkhDAB5-973ll-YJxwLjEOBK">Sunoco</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V27_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1t40yWG-eYC4VPrFUOUiS9TKuqOSRqGNQ">Coke</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V28_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1WXeV2FKVbOlSG-y57x1BTi6K66s9Dg_t">OneWay</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V29_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1M6NLF4rxb_wCjdCLPrnw9zbuxwMllub6">Sundae</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V30_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=11cYCT4dD772l7W1JKZ4Yoyf45dK7YoRU">Burger</A>
+ </td>
+</tr>
+
+
+<!--31-35-->
+<tr>
+ <td align="center"><img src="./imgs/V31_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1vrG-zdoyEcB2QcSCGXyKGlKWmrl24xJF">Bulletin-1</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V32_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1dt02hq5P7UzEyM7Ln7Ns3H3wrB1TcBLo">Poster-3</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V33_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1a0EqNsWSv4tgsPvC_8Pb_OlJbb3AmbJN">Bulletin-2</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V34_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1IHf2TNA57blgswyxKLk1rL5nqsnP5IKl">RoadSign</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V35_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1b_b_ME256Bz5IACqlsFjSO2ZYwq9oWvx">WarningSign</A>
+ </td>
+</tr>
+
+
+<!--36-40-->
+<tr>
+ <td align="center"><img src="./imgs/V36_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1vRsyTFJi1YUo4dtdQ5kWOgV_77S0XRwG">Unrecyclable</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V37_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1-QLkWqIE_RYzVSeBqxgCbTveUx5CpTUu">Poster-4</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V38_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1riE2o2syTWAQ4ICzxvFmGKrQHXCZpOHH">Notice</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V39_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1vVHexnHIdxD4ZOjviRo-5UtE1tyO7os1">Parking</A>
+ </td>
+
+ <td align="center"><img src="./imgs/V40_1_show.jpg" width=245 height=138>
+    <br><A HREF="https://drive.google.com/open?id=1z6yC74-ubxQzwSVsYrJGgnRtwnKemwnU">KeepOffGrass</A>
+ </td>
+</tr>
+
+</table>
+
+<hr>
+
+<div id="myjustify">
+<H2>Evaluation</H2>
+
+All the evaluation results and the Matlab code for generating the following figures are available at <A HREF="https://drive.google.com/file/d/1oRbi4p-PFqKPOt4SvKVJP0wkGfb1ZR9b/view?usp=sharing">Google Drive</A> or <A HREF="https://pan.baidu.com/s/1tkrUHhDkaVixtYzISjsqXg">Baidu Pan</A> with extraction code "sioc". <br><br>
+
+
+
+<p style="margin-top: 5px">
+<table cellpadding="0" cellspacing="0" id="table2" width="100%" height="28%">
+	<!-- MSTableType="layout" -->
+	<tr>
+		<td align="left" ><img border="0" src="figures/SC-precision.png" width="310"></td>
+		<td align="left" ><img border="0" src="figures/RT-precision.png" width="310"></td>
+		<td align="left" ><img border="0" src="figures/PD-precision.png" width="310"></td>
+		<td align="left" ><img border="0" src="figures/MB-precision.png" width="310"></td>
+	</tr>
+	
+	<tr>
+		<td align="left" ><img border="0" src="figures/OCC-precision.png" width="310"></td>
+		<td align="left" ><img border="0" src="figures/OV-precision.png" width="310"></td>
+		<td align="left" ><img border="0" src="figures/UC-precision.png" width="310"></td>
+		<td align="left" ><img border="0" src="figures/All-seq.png" width="310"></td>
+	</tr>
+</table>
+</p>
+<div id = "mycenter">
+<p style="margin-top: 5px">
+Fig. 1 Comparison of evaluated trackers using precision plots. The precision at the threshold t<sub>p</sub>=5 is used as a representative score.
+</p>
+</div>
+
+<!--<p style="margin-top: 5px">
+<table cellpadding="0" cellspacing="0" id="table1" width="100%" height="28%">-->
+	<!-- MSTableType="layout" -->
+<!--	<tr>
+		<td align="center" ><img border="0" src="figures/Keypoint-based.png" width="620"></td>
+		<td align="center" ><img border="0" src="figures/Region-based.png" width="620"></td>
+	</tr>
+</table>
+</p>
+<div id = "mycenter">
+<p style="margin-top: 5px">
+Fig. 2 The overall performance of trackers in two groups for
+different challenging factors. For each group, the overall performance
+is calculated by averaging the performances of trackers
+within this group. The precision at the threshold t<sub>p</sub>=5 is used.
+</p>
+</div>-->
+
+
+<p style="margin-top: 5px">
+<table border="1"  cellpadding="2" cellspacing="0" width="100%">
+<tr>
+	<td align="center" width="0%"><b>Tracker</b></td>
+      <td align="center" width="100%"><b>Reference</b></td>	
+</tr>
+
+
+<tr>
+  <td align="center" width="10%">CNN-GM</td>
+      <td align="center" width="90%">I. Rocco, R. Arandjelovic, and J. Sivic, “Convolutional neural network architecture for geometric matching,” PAMI, 2018.</td>  
+</tr>
+
+<tr>
+  <td align="center" width="10%">DeepCompare</td>
+      <td align="center" width="90%">S. Zagoruyko and N. Komodakis, “Learning to compare image patches via convolutional neural networks,” CVPR, 2015.</td>  
+</tr>
+
+<tr>
+	<td align="center" width="10%">ESM</td>
+      <td align="center" width="90%">S. Benhimane and E. Malis, "Real-time image-based tracking of planes using efficient second-order minimization," IROS, 2004.</td>	
+</tr>
+
+<tr>
+	<td align="center" width="10%">FERNS</td>
+      <td align="center" width="90%">M. Ozuysal, M. Calonder, V. Lepetit, and P. Fua, "Fast keypoint recognition using random ferns," PAMI, 2010.</td>	
+</tr>
+
+
+<tr>
+  <td align="center" width="10%">GIFT</td>
+      <td align="center" width="90%">Y. Liu, Z. Shen, Z. Lin, S. Peng, H. Bao, X. Zhou, "GIFT: learning transformation-invariant dense visual descriptors via group cnns," NeurIPS , 2019</td> 
+</tr>
+
+<tr>
+	<td align="center" width="10%">GO-ESM</td>
+      <td align="center" width="90%">L. Chen, F. Zhou, Y. Shen, X. Tian, H. Ling, and Y. Chen, "Illumination insensitive efficient second-order minimization for planar object tracking," ICRA, 2017</td>	
+</tr>
+
+<tr>
+	<td align="center" width="10%">GPF</td>
+      <td align="center" width="90%">J. Kwon, H. S. Lee, F. C. Park, and K. M. Lee, "A geometric
+particle filter for template-based visual tracking," PAMI 2014</td>	
+</tr>
+
+<tr>
+	<td align="center" width="10%">IC</td>
+      <td align="center" width="90%">S. Baker and I. Matthews, "Lucas-kanade 20 years on: A unifying
+framework," IJCV 2004</td>	
+</tr>
+
+<tr>
+	<td align="center" width="10%">IVT</td>
+      <td align="center" width="90%">D. A. Ross, J. Lim, R.-S. Lin, and M.-H. Yang, "Incremental
+learning for robust visual tracking," IJCV 2008</td>	
+</tr>
+
+<tr>
+  <td align="center" width="10%">LIFT</td>
+      <td align="center" width="90%">K. M. Yi, E. Trulls, V. Lepetit, and P. Fua, “Lift: Learned invariant feature transform,” ECCV, 2016.</td> 
+</tr>
+
+
+<tr>
+  <td align="center" width="10%">LISRD</td>
+      <td align="center" width="90%">R. Pautrat, V. Larsson, M. R. Oswald, M. Pollefeys, “Online invariance selection for local feature descriptors,” ECCV, 2020.</td> 
+</tr>
+
+<tr>
+	<td align="center" width="10%">L1APG</td>
+      <td align="center" width="90%">C. Bao, Y. Wu, H. Ling, and H. Ji, "Real time robust l1 tracker
+using accelerated proximal gradient approach," CVPR 2012</td>	
+</tr>
+
+
+<tr>
+  <td align="center" width="10%">MatchNet</td>
+      <td align="center" width="90%">X. Han, T. Leung, Y. Jia, R. Sukthankar, and A. C. Berg, “Matchnet: Unifying feature and metric learning for patch-based matching,” CVPR 2015.</td> 
+</tr>
+
+
+<tr>
+  <td align="center" width="10%">MCPF</td>
+      <td align="center" width="90%">T. Zhang, C. Xu, and M.-H. Yang, “Learning multi-task correlation particle ﬁlters for visual tracking,” PAMI 2018.</td> 
+</tr>
+
+<tr>
+  <td align="center" width="10%">PFNet</td>
+      <td align="center" width="90%">R. Zeng, S. Denman, S. Sridharan, C. Fookes, “Rethinking planar homography estimation using perspective ﬁelds,” ACCV, 2018.</td>  
+</tr>
+
+<tr>
+	<td align="center" width="10%">SCV</td>
+      <td align="center" width="90%">R. Richa, R. Sznitman, R. Taylor, and G. Hager, “Visual tracking using the sum of conditional variance,” IROS, 2011.</td>	
+</tr>
+
+<tr>
+	<td align="center" width="10%">SIFT</td>
+      <td align="center" width="90%">D. G. Lowe, "Distinctive image features from scale-invariant
+keypoints," IJCV 2004</td>	
+</tr>
+
+<tr>
+	<td align="center" width="10%">SOL</td>
+      <td align="center" width="90%">S. Hare, A. Saffari, and P. H. Torr, “Efficient online structured output learning for keypoint-based object tracking,” CVPR, 2012.</td>	
+</tr>
+
+
+<tr>
+  <td align="center" width="10%">SOSNet</td>
+      <td align="center" width="90%">Y. Tian, X. Yu, B. Fan, F. Wu, H. Heijnen, and V. Balntas, “Sosnet: Second order similarity regularization for local descriptor learning,” CVPR, 2019.</td>  
+</tr>
+
+
+<tr>
+  <td align="center" width="10%">SuperGlue</td>
+      <td align="center" width="90%">P.-E. Sarlin, D. DeTone, T. Malisiewicz, and A. Rabinovich, “Superglue: Learning feature matching with graph neural networks,” CVPR 2020</td> 
+</tr>
+
+<tr>
+	<td align="center" width="10%">SURF</td>
+      <td align="center" width="90%">H. Bay, A. Ess, T. Tuytelaars, and L. Van Gool, "Speeded-up
+robust features (surf)," CVIU 2008</td>	
+</tr>
+
+
+<tr>
+  <td align="center" width="10%">UDH</td>
+      <td align="center" width="90%">T. Nguyen, S. W. Chen, S. S. Shivakumar, C. J. Taylor, and V. Kumar, “Unsupervised deep homography: A fast and robust homography estimation model,” RAL, 2018.</td> 
+</tr>
+
+</table>
+</p>
+</div>
+<hr>
+<!--
+<div id="myjustify">
+<H2>References</H2>
+[1] S. Hare, A. Saffari, and P. H. Torr, “Efficient online structured output learning for keypoint-based object tracking,” CVPR, 2012. <br><br>
+[2] R. Richa, R. Sznitman, R. Taylor, and G. Hager, “Visual tracking using the sum of conditional variance,” IROS, 2011.
+</div>
+<hr>
+-->
+
+<div id = "myjustify">
+<H2>Contact</H2>
+If you have any questions, please contact Pengpeng Liang at liangpcs@gmail.com or Haibin Ling at haibin.ling@gmail.com.
+</div>
+</div>
+</body>
+</html>
